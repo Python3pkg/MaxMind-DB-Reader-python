@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
+
 
 import logging
 import os
@@ -328,7 +328,7 @@ class BaseTestReader(object):
             '1.1.1.17': '1.1.1.16',
             '1.1.1.31': '1.1.1.16'
         }
-        for key_address, value_address in pairs.items():
+        for key_address, value_address in list(pairs.items()):
             data = {'ip': value_address}
 
             self.assertEqual(data,
@@ -363,7 +363,7 @@ class BaseTestReader(object):
             '::2:0:59': '::2:0:58'
         }
 
-        for key_address, value_address in pairs.items():
+        for key_address, value_address in list(pairs.items()):
             self.assertEqual({
                 'ip': value_address
             },

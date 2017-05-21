@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
+
 
 import mmap
 import sys
@@ -150,7 +150,7 @@ class TestDecoder(unittest.TestCase):
     def test_byte(self):
         # Python 2.6 doesn't support dictionary comprehension
         b = dict((byte_from_int(0xc0 ^ int_from_byte(k[0])) + k[1:],
-                  v.encode('utf-8')) for k, v in self.strings.items())
+                  v.encode('utf-8')) for k, v in list(self.strings.items()))
         self.validate_type_decoding('byte', b)
 
     def test_uint16(self):
@@ -195,7 +195,7 @@ class TestDecoder(unittest.TestCase):
         self.validate_type_decoding('uint128', self.generate_large_uint(128))
 
     def validate_type_decoding(self, type, tests):
-        for input, expected in tests.items():
+        for input, expected in list(tests.items()):
             self.check_decoding(type, input, expected)
 
     def check_decoding(self, type, input, expected, name=None):
